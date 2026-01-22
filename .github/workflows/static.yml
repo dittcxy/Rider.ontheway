@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIDER ON THE WAY | Jasa Pengiriman Instant & Sameday</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0056b3;
+            --secondary-blue: #00aaff;
+            --accent-orange: #ff6600;
+            --white: #ffffff;
+            --dark-text: #333333;
+            --light-bg: #f4f7f9;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--light-bg); color: var(--dark-text); line-height: 1.6; scroll-behavior: smooth; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background: var(--white);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0; z-index: 1000;
+        }
+        .logo { font-family: 'Montserrat', sans-serif; font-weight: 800; color: var(--primary-blue); font-size: 1.5rem; letter-spacing: -1px; }
+        .tagline-nav { font-size: 0.8rem; font-weight: 600; color: var(--accent-orange); text-transform: uppercase; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(135deg, rgba(0,86,179,0.9), rgba(0,170,255,0.7));
+            height: 75vh;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; color: var(--white); padding: 0 5%;
+        }
+        .hero-content h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 1rem; line-height: 1.2; }
+        .hero-content p { font-size: 1.2rem; margin-bottom: 2rem; max-width: 800px; margin: 0 auto 2rem; opacity: 0.9; }
+
+        /* --- CALCULATOR SECTION --- */
+        .calc-container {
+            max-width: 650px;
+            margin: -120px auto 50px;
+            background: white;
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            z-index: 10;
+            position: relative;
+        }
+        .calc-container h2 { text-align: center; color: var(--primary-blue); margin-bottom: 2rem; font-family: 'Montserrat', sans-serif; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; color: #666; }
+        .form-group select, .form-group input {
+            width: 100%; padding: 1rem; border: 2px solid #edf2f7; border-radius: 12px; font-size: 1rem; background: #f8fafc; transition: 0.3s;
+        }
+        .form-group input:focus { border-color: var(--secondary-blue); outline: none; background: white; }
+        
+        .result-box {
+            background: #f0f7ff; padding: 2rem; border-radius: 16px; margin-top: 2rem; text-align: center; display: none; border: 2px dashed var(--secondary-blue);
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .result-box h4 { color: var(--primary-blue); font-size: 2rem; margin: 0.5rem 0; font-weight: 800; }
+        .btn-calc {
+            width: 100%; background: var(--primary-blue); color: white; padding: 1.2rem;
+            border: none; border-radius: 12px; font-weight: 800; cursor: pointer; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .btn-calc:hover { background: var(--secondary-blue); transform: translateY(-2px); }
+
+        /* --- CONTENT SECTIONS --- */
+        .section-padding { padding: 6rem 10%; }
+        .about { background: white; text-align: center; }
+        .about h2 { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; color: var(--primary-blue); margin-bottom: 1.5rem; }
+        .about p { max-width: 900px; margin: 0 auto 1.5rem; font-size: 1.1rem; color: #555; }
+
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; }
+        .card { background: white; padding: 3rem 2rem; border-radius: 20px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.05); transition: 0.3s; }
+        .card:hover { transform: translateY(-10px); }
+        .card h3 { color: var(--primary-blue); margin-bottom: 1rem; font-family: 'Montserrat', sans-serif; }
+        .card p { font-size: 0.95rem; color: #666; }
+
+        .info-strip { background: #fff3e0; padding: 2rem; border-left: 6px solid var(--accent-orange); border-radius: 12px; margin-top: 3rem; text-align: left; }
+
+        /* --- FOOTER --- */
+        footer { background: #111827; color: white; padding: 5rem 10% 2rem; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 4rem; text-align: left; }
+        .footer-item h5 { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; margin-bottom: 1.5rem; color: var(--secondary-blue); text-transform: uppercase; }
+        .footer-item p { margin-bottom: 0.8rem; font-size: 0.9rem; opacity: 0.8; }
+        
+        .btn-wa { 
+            background: #25d366; color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 50px; 
+            display: inline-flex; align-items: center; gap: 10px; margin-top: 1rem; font-weight: 700; transition: 0.3s;
+        }
+        .btn-wa:hover { background: #128c7e; transform: scale(1.05); }
+        
+        .copy { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; text-align: center; font-size: 0.8rem; opacity: 0.5; }
+
+        @media (max-width: 768px) {
+            .hero { height: 60vh; }
+            .calc-container { margin-top: -80px; width: 92%; padding: 2rem; }
+            .section-padding { padding: 4rem 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">RIDER ON THE WAY</div>
+        <div class="tagline-nav">Karya Anak Bangsa</div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Jasa Pengiriman<br>Instant & Sameday</h1>
+            <p>Solusi logistik yang aman, nyaman, dan adil. Kami hadir untuk mendongkrak ekonomi masyarakat melalui layanan terpercaya.</p>
+        </div>
+    </section>
+
+    <section class="calc-container">
+        <h2>Kalkulator Tarif</h2>
+        <div class="form-group">
+            <label>Jenis Layanan</label>
+            <select id="serviceType">
+                <option value="3100">INSTANT (Rp 3.100 / km)</option>
+                <option value="2600">SAMEDAY (Rp 2.600 / km)</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Estimasi Jarak (Kilometer)</label>
+            <input type="number" id="distance" placeholder="Masukkan angka jarak..." min="1">
+        </div>
+        <button class="btn-calc" onclick="calculateFee()">Cek Estimasi Biaya</button>
+        
+        <div class="result-box" id="resultBox">
+            <p style="font-weight: 600; color: #555;">Estimasi Total Biaya:</p>
+            <h4 id="totalDisplay">Rp 0</h4>
+            <p id="breakdownDisplay" style="font-size: 0.85rem; color: #777; margin-top: 8px;"></p>
+            <a href="https://wa.me/6287864774515" class="btn-wa">Pesan Lewat WhatsApp</a>
+        </div>
+    </section>
+
+    <section class="section-padding about">
+        <h2>Membangun Ekonomi Melalui Kepercayaan</h2>
+        <p>Kami hadir menjadi solusi di tengah permasalahan Driver, Seller, dan Customer. Kami berkomitmen memberikan rasa keamanan, kenyamanan, dan keadilan yang nyata bagi seluruh lapisan masyarakat.</p>
+        <p><strong>RIDER ON THE WAY</strong> adalah perusahaan independen yang menjaga kualitas layanan melalui komunikasi transparan, perlindungan hingga 300%, dan tarif yang adil bagi mitra driver.</p>
+    </section>
+
+    <section class="section-padding" style="background: #fff;">
+        <div class="grid-3">
+            <div class="card">
+                <h3>🛡️ Perlindungan 300%</h3>
+                <p>Kami memberikan jaminan perlindungan ekstra hingga 300% untuk setiap barang berharga yang Anda percayakan kepada kami.</p>
+            </div>
+            <div class="card">
+                <h3>📍 Pickup Area</h3>
+                <p>Saat ini melayani penjemputan khusus wilayah <strong>Jakarta Barat Only</strong> untuk menjaga kualitas layanan terbaik.</p>
+            </div>
+            <div class="card">
+                <h3>🚚 Drop Area</h3>
+                <p>Jangkauan pengantaran luas meliputi Jabodetabek, Cikarang, Karawang, Cianjur, hingga Bandung.</p>
+            </div>
+        </div>
+
+        <div class="info-strip">
+            <p><strong>⚠️ Ketentuan Penting:</strong> Maksimal beban barang per pengiriman adalah <strong>20 KG</strong>.</p>
+            <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">Biaya layanan 20% dialokasikan untuk perlindungan aset pelanggan, maintenance kendaraan mitra, dan pengembangan inovasi perusahaan.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-item">
+                <h5>Tentang Rider OTW</h5>
+                <p>Solusi pengiriman independen karya anak bangsa yang fokus pada keamanan dan keadilan ekonomi komunitas.</p>
+            </div>
+            <div class="footer-item">
+                <h5>Hubungi Kami</h5>
+                <p>📞 WhatsApp: +6287864774515</p>
+                <p>📸 Instagram: @rider_otw</p>
+                <p>📧 Email: dittcxy@gmail.com</p>
+            </div>
+            <div class="footer-item">
+                <h5>Kantor Pusat</h5>
+                <p>Jl. Guru ma'mun, Rawa Buaya, Cengkareng, Jakarta Barat 11740</p>
+            </div>
+        </div>
+        <div class="copy">
+            &copy; 2026 RIDER ON THE WAY. Seluruh Hak Cipta Dilindungi. Jaga barangmu bersama kami!
+        </div>
+    </footer>
+
+    <script>
+        function calculateFee() {
+            const rate = parseFloat(document.getElementById('serviceType').value);
+            const distance = parseFloat(document.getElementById('distance').value);
+            const resultBox = document.getElementById('resultBox');
+            const totalDisplay = document.getElementById('totalDisplay');
+            const breakdownDisplay = document.getElementById('breakdownDisplay');
+
+            if (isNaN(distance) || distance <= 0) {
+                alert("Harap masukkan jarak pengiriman yang valid (minimal 1 KM).");
+                return;
+            }
+
+            // Perhitungan: (Jarak * Tarif) + Biaya Layanan 20%
+            const basePrice = rate * distance;
+            const serviceFee = basePrice * 0.20;
+            const total = basePrice + serviceFee;
+
+            // Update Tampilan
+            totalDisplay.innerText = "Rp " + total.toLocaleString('id-ID');
+            breakdownDisplay.innerText = `(Harga Dasar: Rp ${basePrice.toLocaleString('id-ID')} + Biaya Layanan 20%: Rp ${serviceFee.toLocaleString('id-ID')})`;
+            
+            resultBox.style.display = "block";
+            
+            // Auto scroll ke hasil
+            resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+</body>
+</html>
+# Simple workflow for deploying static content to GitHub Pages
+name: Deploy static content to Pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
